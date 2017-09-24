@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="#47a0ff" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MyMCPSHelper.LoginPage">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="MyMCPS Helper" TextColor="White" FontSize="30" XAlign="Center"></Label>
+        <Entry Placeholder="Student ID" Keyboard="Numeric" WidthRequest="200" x:Name="StudentId"></Entry>
+        <Entry Placeholder="Password" Keyboard="Default" WidthRequest="200" IsPassword="true" x:Name="Password"></Entry>
+        <Button Text="Login" Clicked="Login" FontSize="25" TextColor="White"></Button>
+    </StackLayout>
+</ContentPage>
