@@ -123,7 +123,6 @@ namespace MyMCPSHelper {
                     cat.Percent = grades[cat.Description].Item2;
                 }
             }
-
             totalGLabel.Text = grades["total"].Item2 + "%";
         }
 

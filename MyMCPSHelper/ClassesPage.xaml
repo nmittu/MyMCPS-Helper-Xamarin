@@ -6,9 +6,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding overallgrade}" FontSize="38" WidthRequest="50" HorizontalTextAlignment="Center" PropertyChanged="Handle_PropertyChanged"></Label>
-                                <Label Text="{Binding courseName}" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center"></Label>                        </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                <Label Text="{Binding overallgrade}" FontSize="38" WidthRequest="50" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" PropertyChanged="Handle_PropertyChanged"></Label>
+                                <Label Text="{Binding courseName}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill" VerticalTextAlignment="Center" ></Label>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
