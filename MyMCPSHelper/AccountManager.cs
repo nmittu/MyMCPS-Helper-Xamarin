@@ -214,7 +214,9 @@ namespace MyMCPSHelper {
         }
 
         public void logout(){
-            string resp = client.GetStringAsync(LoginURL + "?ac=logoff").Result;
+            try{
+                string resp = client.GetStringAsync(LoginURL + "?ac=logoff").Result;
+            }catch{}
         }
 
         public void saveAccount(String StudentID, String Password){

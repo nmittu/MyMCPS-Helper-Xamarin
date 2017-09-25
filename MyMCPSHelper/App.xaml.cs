@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using System.Linq;
 
 namespace MyMCPSHelper
 {
@@ -27,8 +28,13 @@ namespace MyMCPSHelper
 
         protected override async void OnResume()
         {
-            var nav = MainPage.Navigation;
-            await nav.PushModalAsync(new LoginPage(true));
+            try{
+                var nav = MainPage.Navigation;
+                if (nav.ModalStack.LastOrDefault().GetType() != typeof(LoginPage))
+                {
+                    await nav.PushModalAsync(new LoginPage(true));
+                }
+            }catch{}
         }
     }
 }
