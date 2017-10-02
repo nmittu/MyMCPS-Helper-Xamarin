@@ -3,46 +3,70 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Add" Text="New Grade" Clicked="Handle_Clicked"/>
     </ContentPage.ToolbarItems>
-    <StackLayout>
-        <ListView HeightRequest="100" VerticalOptions="End" RowHeight="25" x:Name="OverviewList">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Description}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start"></Label>
-                                <Label Text="{Binding Weight}" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"></Label>
-                                <Label Text="{Binding Formated}" LineBreakMode="NoWrap"></Label>
+    <RelativeLayout>
+        <StackLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+            <ListView HeightRequest="100" VerticalOptions="End" RowHeight="25" x:Name="OverviewList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal" Padding="5">
+                                    <Label Text="{Binding Description}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start"></Label>
+                                    <Label Text="{Binding Weight}" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"></Label>
+                                    <Label Text="{Binding Formated}" LineBreakMode="NoWrap"></Label>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Label Text="" FontSize="25" HorizontalTextAlignment="End" PropertyChanged="Handle_Recolor" x:Name="totalGLabel"></Label>
-        <BoxView Color="Black" WidthRequest="100" HeightRequest="2"></BoxView>
-        <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding grades}" x:Name="AssignmentList">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.ContextActions>
-                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
-                               Text="Delete" IsDestructive="True" />
-                         </ViewCell.ContextActions>
-                        <StackLayout Orientation="Vertical">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Description}" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" WidthRequest="120"></Label>
-                                <Picker Title="Category" WidthRequest="100" ItemsSource="{Binding category_strs}" SelectedItem="{Binding AssignmentType}" PropertyChanged="Handle_PropertyChanged"></Picker>
-                                <Entry Text="{Binding Points}" Keyboard="Numeric"  WidthRequest="40" TextChanged="Handle_TextChanged"></Entry>
-                                <Label Text="/" VerticalTextAlignment="Center"></Label>
-                                <Entry Text="{Binding PossibleFormatted}" Keyboard="Numeric"  WidthRequest="40" TextChanged="Handle_TextChanged"></Entry>
-                                <Label Text="{Binding Percent}" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" MinimumWidthRequest="50" PropertyChanged="Handle_Recolor"></Label>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ContentView Padding="5">
+                <Label Text="" FontSize="25" HorizontalTextAlignment="End" PropertyChanged="Handle_Recolor" x:Name="totalGLabel"></Label>
+            </ContentView>
+            <BoxView Color="Black" WidthRequest="100" HeightRequest="2"></BoxView>
+            <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding grades}" x:Name="AssignmentList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                                   Text="Delete" IsDestructive="True" />
+                             </ViewCell.ContextActions>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal" Padding="5" VerticalOptions="Center">
+                                    <Label Text="{Binding Description}" VerticalTextAlignment="Center" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" FontSize="12"></Label>
+                                    <Picker Title="Category" WidthRequest="60" ItemsSource="{Binding category_strs}" SelectedItem="{Binding AssignmentType}" PropertyChanged="Handle_PropertyChanged"></Picker>
+                                    <Entry Text="{Binding Points}" Keyboard="Numeric"  WidthRequest="50" TextChanged="Handle_TextChanged"></Entry>
+                                    <Label Text="/" VerticalTextAlignment="Center"></Label>
+                                    <Entry Text="{Binding PossibleFormatted}" Keyboard="Numeric"  WidthRequest="50" TextChanged="Handle_TextChanged"></Entry>
+                                    <Label Text="{Binding Percent}" VerticalTextAlignment="Center" MinimumWidthRequest="35" WidthRequest="35" PropertyChanged="Handle_Recolor"></Label>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <controls:AdMobView WidthRequest="320" HeightRequest="50" />
-    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <controls:AdMobView WidthRequest="320" HeightRequest="50" 
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                    Property=Width,
+                                    Factor=0.5,
+                                    Constant=-160}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                    Property=Height,
+                                    Constant=-50}" />
+
+        <ActivityIndicator IsRunning="true"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                    Property=Width,
+                                    Factor=0.5,
+                                    Constant=-16}"
+                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                    Property=Height,
+                                    Factor=0.28}" 
+                           x:Name="spinner"/>
+    </RelativeLayout>
 </ContentPage>

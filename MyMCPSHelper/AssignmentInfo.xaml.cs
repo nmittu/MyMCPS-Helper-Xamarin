@@ -10,7 +10,7 @@ namespace MyMCPSHelper {
     public partial class AssignmentInfo : ContentPage, INotifyPropertyChanged {
         List<String> category_strs;
         List<GradingCategory> categories;
-        ObservableCollection<Grade> grades;
+        ObservableCollection<GradeInfo> grades;
 
         public AssignmentInfo(String SectionID, String className) {
             InitializeComponent();
@@ -34,8 +34,8 @@ namespace MyMCPSHelper {
 				}
 				categories = tempC;
 
-				ObservableCollection<Grade> tempG = new ObservableCollection<Grade>();
-				foreach (Grade g in grades)
+				ObservableCollection<GradeInfo> tempG = new ObservableCollection<GradeInfo>();
+				foreach (GradeInfo g in grades)
 				{
 					if (g != null && g.Description != null)
 					{
@@ -53,7 +53,9 @@ namespace MyMCPSHelper {
 				grades = tempG;
 
                 Device.BeginInvokeOnMainThread(() => {
-					//categories.Add(new GradingCategory{ PointsPossible="100", PointsEarned="", Description="", Percent="", Weight=""});
+                    //categories.Add(new GradingCategory{ PointsPossible="100", PointsEarned="", Description="", Percent="", Weight=""});
+                    spinner.IsRunning = false;
+                    spinner.IsVisible = false;
 					OverviewList.ItemsSource = categories;
 					AssignmentList.ItemsSource = grades;
 				});
@@ -64,7 +66,7 @@ namespace MyMCPSHelper {
             InitializeComponent();
 
             OverviewList.ItemsSource = new List<GradingCategory> {new GradingCategory {Description="All Tasks/Assignments", Percent="100.00", PointsEarned="150", PointsPossible="150", Weight="100"}};
-            AssignmentList.ItemsSource = new List<Grade> { new Grade { Description = "Scarlet Letter Assessment 1 This is very long ...", AssignmentType = "All Tasks/Assignments", Points = "15", Possible = "15" } };
+            AssignmentList.ItemsSource = new List<GradeInfo> { new GradeInfo { Description = "Scarlet Letter Assessment 1 This is very long ...", AssignmentType = "All Tasks/Assignments", Points = "15", Possible = "15" } };
         }
 
         public Dictionary<String, Tuple<Tuple<String, String>, String>> CalculateGrade(){
@@ -74,10 +76,19 @@ namespace MyMCPSHelper {
                 totals[category] = new List<float> {0, 0};
             }
 
-            foreach (Grade g in grades){
+            foreach (GradeInfo g in grades){
+                if (g.Grade != null && g.Grade.ToLower() == "x"){
+                    continue;
+                }
+
                 List<float> pair = totals[g.AssignmentType];
                 try {
-                    pair[0] += float.Parse(g.Points);
+                    if (g.Grade != null && g.Grade.ToLower() == "z"){
+                        pair[0] = 0;
+                    }
+                    else{
+                        pair[0] += float.Parse(g.Points);
+                    }
                 } catch{
                     continue;
                 }
@@ -123,7 +134,6 @@ namespace MyMCPSHelper {
                     cat.Percent = grades[cat.Description].Item2;
                 }
             }
-
             totalGLabel.Text = grades["total"].Item2 + "%";
         }
 
@@ -132,7 +142,10 @@ namespace MyMCPSHelper {
         }
 
         void Handle_Clicked(object sender, System.EventArgs e){
-            grades.Add(new Grade { Description="New Assignment", AssignmentType=category_strs[0], category_strs=category_strs, Points="", Possible="10"});
+            if (grades != null)
+            {
+                grades.Add(new GradeInfo { Description = "New Assignment", AssignmentType = category_strs[0], category_strs = category_strs, Points = "", Possible = "10", Grade = ""});
+            }
         }
 
         void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e){
@@ -141,9 +154,9 @@ namespace MyMCPSHelper {
 
         void Handle_Recolor(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            Label label = (Label)sender;
             try
             {
-                Label label = (Label)sender;
                 String text = label.Text;
                 if (text.Substring(text.Length - 1, 1) == "%")
                 {
@@ -170,12 +183,14 @@ namespace MyMCPSHelper {
                 {
                     label.TextColor = Color.Red;
                 }
-            }catch{}
+            }catch{
+                label.TextColor = Color.Red;
+            }
         }
 
 		public void OnDelete(object sender, EventArgs e){
 			var mi = ((MenuItem)sender);
-            grades.Remove((Grade)mi.CommandParameter);
+            grades.Remove((GradeInfo)mi.CommandParameter);
             repopulate(CalculateGrade());
 		}
     }
