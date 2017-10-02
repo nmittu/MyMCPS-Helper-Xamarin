@@ -15,14 +15,16 @@ namespace MyMCPSHelper {
 				List<Class> classCells = new List<Class>();
 				foreach (Class clas in classes)
 				{
-                    if (clas != null && clas.period != null && clas.period.Length >= 2 && Int32.Parse(clas.period.Substring(0, 2)) <= 8 && clas.courseName.ToLower() != "lunch")
+                    if (clas != null && clas.period != null && clas.period.Length >= 2 && Int32.Parse(clas.period.Substring(0, 2)) <= 9 && clas.courseName.ToLower() != "lunch")
 					{
 						classCells.Add(clas);
 					}
 				}
 
                 Device.BeginInvokeOnMainThread(() => {
-                   ClassesList.ItemsSource = classCells;
+                    spinner.IsRunning = false;
+                    spinner.IsVisible = false;
+                    ClassesList.ItemsSource = classCells;
 				});
             });
         }

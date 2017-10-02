@@ -60,7 +60,7 @@
       <DependentUpon>AssignmentInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GradingCategory.cs" />
-    <Compile Include="Grade.cs" />
+    <Compile Include="GradeInfo.cs" />
     <Compile Include="AdMobView.cs" />
     <Compile Include="InClassAdView.cs" />
   </ItemGroup>

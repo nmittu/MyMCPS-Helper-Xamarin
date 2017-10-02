@@ -25,11 +25,14 @@ namespace MyMCPSHelper {
         }
 
         void Login(object sender, System.EventArgs e) {
+            spinner.IsVisible = true;
+            spinner.IsRunning = true;
             ((Button)sender).IsEnabled = false;
             Task.Run(() => {
                 String res = App.AccMangr.Login(StudentId.Text, Password.Text);
 				if (res == "true"){
                     Device.BeginInvokeOnMainThread(() => {
+                        spinner.IsRunning = false;
                         ((Button)sender).IsEnabled = true;
                         if (justPop){
                             Navigation.PopModalAsync();
@@ -41,6 +44,7 @@ namespace MyMCPSHelper {
                     });
 				}else{
                     Device.BeginInvokeOnMainThread(() => {
+                        spinner.IsRunning = false;
                         ((Button) sender).IsEnabled = true;
                         DisplayAlert("Error", res, "Ok"); 
                     });

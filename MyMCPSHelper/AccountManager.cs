@@ -207,10 +207,10 @@ namespace MyMCPSHelper {
             return JsonConvert.DeserializeObject<List<GradingCategory>>(jsons);
 		}
 
-        public ObservableCollection<Grade> loadAssignments(string secid) {
+        public ObservableCollection<GradeInfo> loadAssignments(string secid) {
             String url = AssignmentInfoURL + "?secid=" + secid + "&student_number=" + StudentID + "&schoolid=" + cookies.GetCookies(new Uri(LoginURL))["currentSchool"].Value + "&termid=" + loadTerm();
             String jsons = client.GetStringAsync(url).Result;
-            return JsonConvert.DeserializeObject<ObservableCollection<Grade>>(jsons);
+            return JsonConvert.DeserializeObject<ObservableCollection<GradeInfo>>(jsons);
         }
 
         public void logout(){
