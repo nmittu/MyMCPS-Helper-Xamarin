@@ -141,29 +141,15 @@ namespace MyMCPSHelper {
 
             {
                 HtmlDocument doc = new HtmlDocument();
-                doc.Load(response.Content.ReadAsStreamAsync().Result);
+                var res = response.Content.ReadAsStringAsync().Result;
 
-                var scripts = doc.DocumentNode.Descendants("script");
+                string pattern = "\\s?root.studentId\\s?=\\s?parseInt\\(('|\")(\\d+)('|\")\\);";
 
-                foreach (HtmlNode script in scripts){
-                    if (script.GetAttributeValue("src", "-1") != "-1"){
-                        continue;
-                    }
+                MatchCollection matches = Regex.Matches(res, pattern);
 
-                    if (script.InnerText.Length >=18 && script.InnerText.Trim().Substring(0, 18) == "(function (root) {"){
-						var lines = Regex.Split(script.InnerText, "\r\n|\r|\n");
-
-                        foreach (String line in lines){
-                            if (line.Length > 0 && line.Substring(line.Length - 1) == ";"){
-                                String line_ = line.Substring(0, line.Length - 1);
-                                var attrib = Regex.Split(line_, " = ");
-                                if (attrib[0].Trim() == "root.studentId"){
-                                    StudentNumber = attrib[1].Substring(10, attrib[1].Length - 10 - 2);
-                                    return "true";
-                                }
-                            }
-                        }
-					}
+                if(matches.Count > 0){
+                    StudentNumber = matches[0].Groups[2].ToString();
+                    return "true";
                 }
             }
 
