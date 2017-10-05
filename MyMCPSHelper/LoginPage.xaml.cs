@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 
 using Xamarin.Forms;
+using MyMCPSHelper.HistoryViews;
 
 namespace MyMCPSHelper {
     public partial class LoginPage : ContentPage {
@@ -21,6 +22,7 @@ namespace MyMCPSHelper {
 			{
 				StudentId.Text = account.Item1;
 				Password.Text = account.Item2;
+                Login(LoginButton, null);
 			}
         }
 
@@ -38,7 +40,7 @@ namespace MyMCPSHelper {
                             Navigation.PopModalAsync();
                         }
                         else{
-                            Navigation.PushModalAsync(new NavigationPageNoBack(new ClassesPage()));
+                            Navigation.PushModalAsync(new TabbedPage() { Children={new NavigationPageNoBack(new ClassesPage()){ Title = "Grades" }, new NavigationPageNoBack(new TermsView()){ Title = "History" } } });
                         }
                         App.AccMangr.saveAccount(StudentId.Text, Password.Text);
                     });

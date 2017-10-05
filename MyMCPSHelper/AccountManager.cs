@@ -46,6 +46,7 @@ namespace MyMCPSHelper {
         public const String TermURL = "https://portal.mcpsmd.org/guardian/prefs/termsData.json";
         public const String CategoryURL = "https://portal.mcpsmd.org/guardian/prefs/assignmentGrade_CategoryDetail.json";
         public const String AssignmentInfoURL = "https://portal.mcpsmd.org/guardian/prefs/assignmentGrade_AssignmentDetail.json";
+        public const String HistoryURL = "https://portal.mcpsmd.org/guardian/termgrades.html";
         private HttpClient client;
         private String StudentNumber = "";
         private String StudentID = "";
@@ -199,6 +200,21 @@ namespace MyMCPSHelper {
             return JsonConvert.DeserializeObject<ObservableCollection<GradeInfo>>(jsons);
         }
 
+        public List<HistoricTerm> loadHistory(){
+            String url = HistoryURL;
+            String HTML = client.GetStringAsync(url).Result;
+            String pattern = "<li\\s+class=\".?\"><a\\s+href=\"termgrades.html\\?termid=(\\d+)&schoolid=(\\d+)\">(.+)<\\/a><\\/li>";
+
+            MatchCollection matches = Regex.Matches(HTML, pattern);
+
+            List<HistoricTerm> terms = new List<HistoricTerm>();
+
+            foreach(Match match in matches){
+                terms.Add(new HistoricTerm(){ termID=match.Groups[1].ToString(), schoolID=match.Groups[2].ToString(), termName=match.Groups[3].ToString()});
+            }
+            return terms;
+        }
+
         public void logout(){
             try{
                 string resp = client.GetStringAsync(LoginURL + "?ac=logoff").Result;
@@ -206,13 +222,7 @@ namespace MyMCPSHelper {
         }
 
         public void saveAccount(String StudentID, String Password){
-            {
-                var account = AccountStore.Create().FindAccountsForService(App.Name).FirstOrDefault();
-				if (account != null)
-				{
-                    AccountStore.Create().Delete(account, App.Name);
-				}
-            }
+            deleteAccount();
 
             if (!string.IsNullOrWhiteSpace(StudentID) && !string.IsNullOrWhiteSpace(Password)){
 				Account account = new Account{
@@ -221,6 +231,14 @@ namespace MyMCPSHelper {
                 account.Properties.Add("Password", Password);
                 AccountStore.Create().Save(account, App.Name);
             }
+        }
+
+        public void deleteAccount(){
+			var account = AccountStore.Create().FindAccountsForService(App.Name).FirstOrDefault();
+			if (account != null)
+			{
+				AccountStore.Create().Delete(account, App.Name);
+			}
         }
 
         public Tuple<String, String> getAccount(){

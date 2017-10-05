@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:MyMCPSHelper;assembly=MyMCPSHelper" x:Class="MyMCPSHelper.ClassesPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="logout" Text="Logout" Clicked="Handle_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <StackLayout Padding="0" Orientation="Vertical" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
             <ListView ItemTapped="Handle_ItemTapped" x:Name="ClassesList">

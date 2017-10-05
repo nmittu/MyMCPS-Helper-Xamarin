@@ -4,7 +4,7 @@
         <Label Text="MyMCPS Helper" TextColor="White" FontSize="30" XAlign="Center"></Label>
         <Entry Placeholder="Student ID" Keyboard="Numeric" WidthRequest="200" x:Name="StudentId"></Entry>
         <Entry Placeholder="Password" Keyboard="Default" WidthRequest="200" IsPassword="true" x:Name="Password"></Entry>
-        <Button Text="Login" Clicked="Login" FontSize="25" TextColor="White"></Button>
+        <Button Text="Login" Clicked="Login" FontSize="25" TextColor="White" x:Name="LoginButton"></Button>
         <ActivityIndicator IsVisible="true" IsRunning="false" x:Name="spinner"></ActivityIndicator>
     </StackLayout>
 </ContentPage>

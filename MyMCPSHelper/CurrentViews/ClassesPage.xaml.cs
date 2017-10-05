@@ -58,5 +58,11 @@ namespace MyMCPSHelper {
 					break;
             }
         }
+
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            App.AccMangr.deleteAccount();
+            Navigation.PopModalAsync();
+        }
     }
 }
