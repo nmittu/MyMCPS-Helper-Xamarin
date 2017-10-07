@@ -81,7 +81,13 @@ namespace MyMCPSHelper {
                     continue;
                 }
 
-                List<float> pair = totals[g.AssignmentType];
+                List<float> pair;
+                try
+                {
+                    pair = totals[g.AssignmentType];
+                }catch{
+                    continue;
+                }
                 try {
                     if (!(g.Grade != null && g.Grade.ToLower() == "z")){
                         pair[0] += float.Parse(g.Points);
