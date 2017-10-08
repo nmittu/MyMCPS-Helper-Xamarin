@@ -48,7 +48,7 @@
             </ListView>
         </StackLayout>
 
-        <controls:AdMobView WidthRequest="320" HeightRequest="50" 
+        <controls:InClassAdView WidthRequest="320" HeightRequest="50" 
                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
                                     Property=Width,
                                     Factor=0.5,
