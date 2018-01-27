@@ -166,7 +166,7 @@ namespace MyMCPSHelper {
             return JsonConvert.DeserializeObject<List<Class>>(jsons);
         }
 
-        private String loadTerm(){
+        public String loadTerm(){
             if (this.termname != null){
                 return this.termname;
             }
@@ -220,6 +220,15 @@ namespace MyMCPSHelper {
 				};
                 account.Properties.Add("Password", Password);
                 AccountStore.Create().Save(account, App.Name);
+            }
+        }
+
+        public void deleteAccount()
+        {
+            var account = AccountStore.Create().FindAccountsForService(App.Name).FirstOrDefault();
+            if (account != null)
+            {
+                AccountStore.Create().Delete(account, App.Name);
             }
         }
 

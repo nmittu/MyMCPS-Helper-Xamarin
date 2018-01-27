@@ -5,5 +5,6 @@ namespace MyMCPSHelper {
         public string overallgrade { get; set; }
         public string period { get; set; }
         public string sectionid { get; set; }
+        public string termid { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace MyMCPSHelper {
 				List<GradingCategory> tempC = new List<GradingCategory>();
 				foreach (GradingCategory cat in categories)
 				{
-					if (cat != null && cat.Description != null)
+                    if (cat != null && cat.Description != null && !category_strs.Contains(cat.Description))
 					{
 						tempC.Add(cat);
 						category_strs.Add(cat.Description);
@@ -147,7 +147,7 @@ namespace MyMCPSHelper {
         void Handle_Clicked(object sender, System.EventArgs e){
             if (grades != null)
             {
-                grades.Add(new GradeInfo { Description = "New Assignment", AssignmentType = category_strs[0], category_strs = category_strs, Points = "", Possible = "10", Grade = ""});
+                grades.Insert(0, new GradeInfo { Description = "New Assignment", AssignmentType = category_strs[0], category_strs = category_strs, Points = "", Possible = "10", Grade = ""});
             }
         }
 

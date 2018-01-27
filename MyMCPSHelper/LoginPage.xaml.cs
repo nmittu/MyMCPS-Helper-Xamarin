@@ -21,6 +21,8 @@ namespace MyMCPSHelper {
 			{
 				StudentId.Text = account.Item1;
 				Password.Text = account.Item2;
+
+                Login(LoginButton, null);
 			}
         }
 
