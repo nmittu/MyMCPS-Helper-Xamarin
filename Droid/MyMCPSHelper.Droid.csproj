@@ -199,7 +199,7 @@
       <HintPath>..\packages\Xamarin.Facebook.AudienceNetwork.Android.4.26.0\lib\MonoAndroid70\Xamarin.Facebook.AudienceNetwork.dll</HintPath>
     </Reference>
     <Reference Include="FacebookAdapter">
-      <HintPath>..\..\FacebookAdapter\FacebookAdapter\bin\Release\FacebookAdapter.dll</HintPath>
+      <HintPath>packages\FacebookAdapter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
