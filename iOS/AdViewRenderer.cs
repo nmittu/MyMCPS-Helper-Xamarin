@@ -22,7 +22,7 @@ namespace MyMCPSHelper.iOS
 			if (e.NewElement == null)
 				return;
 
-			if (e.OldElement == null)
+ 			if (e.OldElement == null)
 			{
                 adView = new BannerView(AdSizeCons.Banner)
 				{

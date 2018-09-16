@@ -127,8 +127,10 @@ namespace MyMCPSHelper {
 			form["account"] = StudentId;
 			form["ldappassword"] = Password;
 
-			String b64pw = Base64Encode(Password);
-			var alg = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacMd5);
+            var MD5alg = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Md5);
+            String b64pw = Convert.ToBase64String(MD5alg.HashData(Encoding.UTF8.GetBytes(Password))).Replace('=', ' ').Trim();
+			
+            var alg = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacMd5);
             CryptographicHash hasher = alg.CreateHash(Encoding.UTF8.GetBytes(psval));
 			hasher.Append(Encoding.UTF8.GetBytes(b64pw));
             form["pw"] = ToHexString(hasher.GetValueAndReset());
