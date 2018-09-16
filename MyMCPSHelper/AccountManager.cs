@@ -53,6 +53,7 @@ namespace MyMCPSHelper {
         private CookieContainer cookies = new CookieContainer();
         private string password;
         private String termname = null;
+        private Dictionary<string, string> accounts = new Dictionary<string, string>();  // Name, SN
 
 		public AccountManager() {
 			client = null;
@@ -141,7 +142,7 @@ namespace MyMCPSHelper {
             var content = new FormUrlEncodedContent(form);
             var response = client.PostAsync(LoginURL, content).Result;
 
-            {
+            if (int.TryParse(StudentID, out int n)){
                 HtmlDocument doc = new HtmlDocument();
                 var res = response.Content.ReadAsStringAsync().Result;
 
@@ -152,6 +153,21 @@ namespace MyMCPSHelper {
                 if(matches.Count > 0){
                     StudentNumber = matches[0].Groups[2].ToString();
                     return "true";
+                }
+            }else{
+                HtmlDocument doc = new HtmlDocument();
+                var res = response.Content.ReadAsStringAsync().Result;
+
+                string pattern = "\\s?<a href=(\"|')javascript:switchStudent\\((\\d+)\\);(\"|')>(.+)<\\/a>";
+
+                MatchCollection matches = Regex.Matches(res, pattern);
+
+                if(matches.Count > 0){
+                    for (int i = 0; i < matches.Count; i++)
+                    {
+                        accounts.Add(matches[i].Groups[4].ToString(), matches[i].Groups[2].ToString());
+                    }
+                    return "Multiple Accounts";
                 }
             }
 
@@ -202,6 +218,7 @@ namespace MyMCPSHelper {
         }
 
         public void logout(){
+            accounts = new Dictionary<string, string>();
             try{
                 string resp = client.GetStringAsync(LoginURL + "?ac=logoff").Result;
             }catch{}
@@ -237,6 +254,32 @@ namespace MyMCPSHelper {
         public Tuple<String, String> getAccount(){
             var account = AccountStore.Create().FindAccountsForService(App.Name).FirstOrDefault();
             return (account != null) ? new Tuple<string, string>(account.Username, account.Properties["Password"]) : null;
+        }
+
+        public List<string> getStudentNames(){
+            return accounts.Keys.ToList();
+        }
+
+        public void setActiveAccount(string name){
+            Dictionary<string, string> form = new Dictionary<string, string>();
+            form.Add("selected_student_id", accounts[name]);
+            var content = new FormUrlEncodedContent(form);
+            var response = client.PostAsync(LoginURL, content).Result;
+
+            {
+                HtmlDocument doc = new HtmlDocument();
+                var res = response.Content.ReadAsStringAsync().Result;
+
+                string pattern = "\\s?root.studentNumber\\s?=\\s?parseInt\\(('|\")(\\d+)('|\")\\);";
+
+                MatchCollection matches = Regex.Matches(res, pattern);
+
+                if (matches.Count > 0)
+                {
+                    StudentID = matches[0].Groups[2].ToString();
+                }
+            }
+            StudentNumber = accounts[name];
         }
     }
 

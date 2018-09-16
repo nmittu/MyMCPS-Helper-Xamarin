@@ -65,6 +65,7 @@ namespace MyMCPSHelper {
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
+            App.AccMangr.logout();
             App.AccMangr.deleteAccount();
             Navigation.PopModalAsync();
         }

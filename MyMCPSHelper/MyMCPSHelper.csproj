@@ -39,6 +39,10 @@
     <EmbeddedResource Include="AssignmentInfo.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="StudentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -63,6 +67,9 @@
     <Compile Include="GradeInfo.cs" />
     <Compile Include="AdMobView.cs" />
     <Compile Include="InClassAdView.cs" />
+    <Compile Include="StudentsPage.xaml.cs">
+      <DependentUpon>StudentsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PCLCrypto">

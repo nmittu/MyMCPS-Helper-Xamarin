@@ -44,7 +44,19 @@ namespace MyMCPSHelper {
                         }
                         App.AccMangr.saveAccount(StudentId.Text, Password.Text);
                     });
-				}else{
+                }else if(res == "Multiple Accounts"){
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        spinner.IsRunning = false;
+                        ((Button)sender).IsEnabled = true;
+                        if (justPop){
+                            Navigation.PopModalAsync();
+                        }else{
+                            Navigation.PushModalAsync(new NavigationPageNoBack(new StudentsPage()));
+                        }
+                        App.AccMangr.saveAccount(StudentId.Text, Password.Text);
+                    });
+                }else{
                     Device.BeginInvokeOnMainThread(() => {
                         spinner.IsRunning = false;
                         ((Button) sender).IsEnabled = true;
