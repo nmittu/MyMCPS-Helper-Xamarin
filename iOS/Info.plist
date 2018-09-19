@@ -8,10 +8,6 @@
 	<string>MyMCPS Helper</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mittudev.mymcps-helper</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.4.1</string>
-	<key>CFBundleVersion</key>
-	<string>1.4.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -40,5 +36,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>2.0.0</string>
 </dict>
 </plist>
