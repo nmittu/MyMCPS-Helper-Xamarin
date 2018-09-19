@@ -2,7 +2,7 @@
 <ContentPage BackgroundColor="#47a0ff" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MyMCPSHelper.LoginPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Label Text="MyMCPS Helper" TextColor="White" FontSize="30" XAlign="Center"></Label>
-        <Entry Placeholder="Student ID" Keyboard="Numeric" WidthRequest="200" x:Name="StudentId"></Entry>
+        <Entry Placeholder="User Name" Keyboard="Default" WidthRequest="200" x:Name="StudentId"></Entry>
         <Entry Placeholder="Password" Keyboard="Default" WidthRequest="200" IsPassword="true" x:Name="Password"></Entry>
         <Button Text="Login" Clicked="Login" FontSize="25" TextColor="White" x:Name="LoginButton"></Button>
         <ActivityIndicator IsVisible="true" IsRunning="false" x:Name="spinner"></ActivityIndicator>

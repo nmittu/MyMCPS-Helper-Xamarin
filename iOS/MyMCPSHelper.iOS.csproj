@@ -38,14 +38,14 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution: Karen Mittu (AAD99G3N8Q)</CodesignKey>
+    <CodesignKey>iPhone Developer: Karen Mittu (SW64C3922J)</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>MyMCPS Helper Dist</CodesignProvision>
+    <CodesignProvision>MyMCPS Helper dev</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -142,7 +142,7 @@
       <HintPath>..\packages\Xam.Plugin.Connectivity.4.0.0.171-beta\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
     </Reference>
     <Reference Include="Google.MobileAds">
-      <HintPath>..\packages\Xamarin.Google.iOS.MobileAds.7.11.0\lib\Xamarin.iOS10\Google.MobileAds.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Google.iOS.MobileAds.7.31.0.2\lib\Xamarin.iOS10\Google.MobileAds.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +190,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="AdViewRenderer.cs" />
     <Compile Include="InClassAdRenderer.cs" />
+    <Compile Include="StudentsAdRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyMCPSHelper\MyMCPSHelper.csproj">
@@ -209,5 +210,5 @@
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.122203\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.122203\build\netstandard1.0\Xamarin.Forms.targets')" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
-  <Import Project="..\packages\Xamarin.Google.iOS.MobileAds.7.11.0\build\Xamarin.Google.iOS.MobileAds.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.MobileAds.7.11.0\build\Xamarin.Google.iOS.MobileAds.targets')" />
+  <Import Project="..\packages\Xamarin.Google.iOS.MobileAds.7.31.0.2\build\Xamarin.Google.iOS.MobileAds.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.MobileAds.7.31.0.2\build\Xamarin.Google.iOS.MobileAds.targets')" />
 </Project>

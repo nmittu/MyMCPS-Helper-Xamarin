@@ -40,7 +40,7 @@ namespace MyMCPSHelper {
                             Navigation.PopModalAsync();
                         }
                         else{
-                            Navigation.PushModalAsync(new NavigationPageNoBack(new ClassesPage()));
+                            Navigation.PushModalAsync(new NavigationPageNoBack(new ClassesPage(), "Classes"));
                         }
                         App.AccMangr.saveAccount(StudentId.Text, Password.Text);
                     });
@@ -52,7 +52,7 @@ namespace MyMCPSHelper {
                         if (justPop){
                             Navigation.PopModalAsync();
                         }else{
-                            Navigation.PushModalAsync(new NavigationPageNoBack(new StudentsPage()));
+                            Navigation.PushModalAsync(new NavigationPageNoBack(new StudentsPage(), "Students"));
                         }
                         App.AccMangr.saveAccount(StudentId.Text, Password.Text);
                     });
@@ -68,10 +68,11 @@ namespace MyMCPSHelper {
     }
 
     class NavigationPageNoBack: NavigationPage{
-        public NavigationPageNoBack(Page p): base(p){}
+        string title;
+        public NavigationPageNoBack(Page p, string title) : base(p) { this.title = title; }
         protected override bool OnBackButtonPressed()
         {
-            if(((NavigationPage)Navigation.ModalStack.LastOrDefault()).CurrentPage.Title == "Classes"){
+            if(((NavigationPage)Navigation.ModalStack.LastOrDefault()).CurrentPage.Title == title){
                 return true;
             }
             return base.OnBackButtonPressed();
