@@ -21,6 +21,8 @@ namespace MyMCPSHelper {
 			{
 				StudentId.Text = account.Item1;
 				Password.Text = account.Item2;
+
+                Login(LoginButton, null);
 			}
         }
 
@@ -38,11 +40,23 @@ namespace MyMCPSHelper {
                             Navigation.PopModalAsync();
                         }
                         else{
-                            Navigation.PushModalAsync(new NavigationPageNoBack(new ClassesPage()));
+                            Navigation.PushModalAsync(new NavigationPageNoBack(new ClassesPage(), "Classes"));
                         }
                         App.AccMangr.saveAccount(StudentId.Text, Password.Text);
                     });
-				}else{
+                }else if(res == "Multiple Accounts"){
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        spinner.IsRunning = false;
+                        ((Button)sender).IsEnabled = true;
+                        if (justPop){
+                            Navigation.PopModalAsync();
+                        }else{
+                            Navigation.PushModalAsync(new NavigationPageNoBack(new StudentsPage(), "Students"));
+                        }
+                        App.AccMangr.saveAccount(StudentId.Text, Password.Text);
+                    });
+                }else{
                     Device.BeginInvokeOnMainThread(() => {
                         spinner.IsRunning = false;
                         ((Button) sender).IsEnabled = true;
@@ -54,10 +68,11 @@ namespace MyMCPSHelper {
     }
 
     class NavigationPageNoBack: NavigationPage{
-        public NavigationPageNoBack(Page p): base(p){}
+        string title;
+        public NavigationPageNoBack(Page p, string title) : base(p) { this.title = title; }
         protected override bool OnBackButtonPressed()
         {
-            if(((NavigationPage)Navigation.ModalStack.LastOrDefault()).CurrentPage.Title == "Classes"){
+            if(((NavigationPage)Navigation.ModalStack.LastOrDefault()).CurrentPage.Title == title){
                 return true;
             }
             return base.OnBackButtonPressed();

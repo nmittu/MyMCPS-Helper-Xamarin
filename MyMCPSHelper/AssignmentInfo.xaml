@@ -12,8 +12,7 @@
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" Padding="5">
                                     <Label Text="{Binding Description}" LineBreakMode="NoWrap" HorizontalTextAlignment="Start"></Label>
-                                    <Label Text="{Binding Weight}" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"></Label>
-                                    <Label Text="{Binding Formated}" LineBreakMode="NoWrap"></Label>
+                                    <Label Text="{Binding Formated}" LineBreakMode="NoWrap" HorizontalOptions="EndAndExpand"></Label>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -39,7 +38,7 @@
                                     <Entry Text="{Binding Points}" Keyboard="Numeric"  WidthRequest="50" TextChanged="Handle_TextChanged"></Entry>
                                     <Label Text="/" VerticalTextAlignment="Center"></Label>
                                     <Entry Text="{Binding PossibleFormatted}" Keyboard="Numeric"  WidthRequest="50" TextChanged="Handle_TextChanged"></Entry>
-                                    <Label Text="{Binding Percent}" VerticalTextAlignment="Center" MinimumWidthRequest="35" WidthRequest="35" PropertyChanged="Handle_Recolor"></Label>
+                                    <Label Text="{Binding Percent}" VerticalTextAlignment="Center" MinimumWidthRequest="36" WidthRequest="36" PropertyChanged="Handle_Recolor"></Label>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

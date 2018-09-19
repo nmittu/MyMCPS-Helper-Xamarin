@@ -13,11 +13,15 @@ namespace MyMCPSHelper {
             Task.Run(() => {
 				var classes = App.AccMangr.loadClasses();
 				List<Class> classCells = new List<Class>();
+
+
+                List<String> classnames = new List<string>();
 				foreach (Class clas in classes)
 				{
-                    if (clas != null && clas.period != null && clas.period.Length >= 2 && Int32.Parse(clas.period.Substring(0, 2)) <= 9 && clas.courseName.ToLower() != "lunch")
+                    if (clas != null && clas.period != null && clas.period.Length >= 2 && Int32.Parse(clas.period.Substring(0, 2)) <= 9 && clas.courseName.ToLower() != "lunch" && clas.termid == App.AccMangr.loadTerm())
 					{
 						classCells.Add(clas);
+                        classnames.Add(clas.courseName);
 					}
 				}
 
@@ -57,6 +61,13 @@ namespace MyMCPSHelper {
                     label.TextColor = Color.Red;
 					break;
             }
+        }
+
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            App.AccMangr.logout();
+            App.AccMangr.deleteAccount();
+            Navigation.PopModalAsync();
         }
     }
 }
