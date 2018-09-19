@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.mittudev.mymcps_helper.MyMCPS_Helper" android:versionCode="15" android:versionName="2.0.0">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="25" />
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="27" />
 	<application android:icon="@drawable/ic_launcher" android:label="MyMCPS Helper">
 		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent" />
 	</application>
