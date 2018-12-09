@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{7BA1F424-6110-48DE-8907-E1E2528DAD5F}|Default">
+  <MonoDevelop.Ide.ItemProperties.MyMCPSHelper.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.042FE297-1FA4-4284-A6FC-43362B278908" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyMCPSHelper/Class.cs">
+    <Files>
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="MyMCPSHelper/Properties/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/AccountManager.cs" Line="220" Column="4" />
+      <File FileName="iOS/AppDelegate.cs" Line="4" Column="7" />
+      <File FileName="iOS/AdViewRenderer.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/LoginPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/LoginPage.xaml" Line="11" Column="1" />
+      <File FileName="MyMCPSHelper/ClassesPage.xaml" Line="3" Column="14" />
+      <File FileName="MyMCPSHelper/StudentsPage.xaml" Line="3" Column="14" />
+      <File FileName="MyMCPSHelper/InClassAdView.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/AssignmentInfo.xaml.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/AssignmentInfo.xaml" Line="4" Column="42" />
+      <File FileName="MyMCPSHelper/obj/Debug/MyMCPSHelper.StudentsPage.xaml.g.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/Class.cs" Line="11" Column="33" />
+      <File FileName="Droid/Resources/values/styles.xml" Line="1" Column="1" />
+      <File FileName="Droid/AdViewRenderer.cs" Line="50" Column="1" />
+      <File FileName="Droid/StudentsAdView.cs" Line="1" Column="1" />
+      <File FileName="Droid/InClassAdRenderer.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/AdMobView.cs" Line="13" Column="1" />
+      <File FileName="MyMCPSHelper/StudentsAdView.cs" Line="1" Column="1" />
+      <File FileName="Droid/Properties/AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/App.xaml" Line="7" Column="1" />
+      <File FileName="iOS/GoogleService-Info.plist" />
+      <File FileName="iOS/Info.plist" />
+      <File FileName="MyMCPSHelper/MyMCPSHelperPage.xaml" Line="5" Column="1" />
+      <File FileName="MyMCPSHelper/ClassesPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MyMCPSHelper/GradeInfo.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

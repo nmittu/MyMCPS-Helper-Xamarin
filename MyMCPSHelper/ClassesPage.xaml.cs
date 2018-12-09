@@ -25,6 +25,12 @@ namespace MyMCPSHelper {
 					}
 				}
 
+                foreach(Class clas in classCells)
+                {
+                    Class tmp = App.AccMangr.loadClassDetail(clas.sectionid);
+                    clas.percent = tmp?.percent;
+                }
+
                 Device.BeginInvokeOnMainThread(() => {
                     spinner.IsRunning = false;
                     spinner.IsVisible = false;
@@ -41,25 +47,29 @@ namespace MyMCPSHelper {
 
         void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
             Label label = (Label)sender;
-            switch(label.Text){
-                case "A":
-                    label.TextColor = Color.Green;
-                    break;
-				case "B":
-                    label.TextColor = Color.Blue;
-					break;
-				case "C":
-                    label.TextColor = Color.Orange;
-					break;
-				case "D":
-                    label.TextColor = Color.DarkOrange;
-					break;
-				case "E":
-                    label.TextColor = Color.Red;
-					break;
-				case "F":
-                    label.TextColor = Color.Red;
-					break;
+            if (label.Text != null)
+            {
+                switch (label.Text[label.Text.Length - 1])
+                {
+                    case 'A':
+                        label.TextColor = Color.Green;
+                        break;
+                    case 'B':
+                        label.TextColor = Color.Blue;
+                        break;
+                    case 'C':
+                        label.TextColor = Color.Orange;
+                        break;
+                    case 'D':
+                        label.TextColor = Color.DarkOrange;
+                        break;
+                    case 'E':
+                        label.TextColor = Color.Red;
+                        break;
+                    case 'F':
+                        label.TextColor = Color.Red;
+                        break;
+                }
             }
         }
 

@@ -46,6 +46,7 @@ namespace MyMCPSHelper {
         public const String TermURL = "https://portal.mcpsmd.org/guardian/prefs/termsData.json";
         public const String CategoryURL = "https://portal.mcpsmd.org/guardian/prefs/assignmentGrade_CategoryDetail.json";
         public const String AssignmentInfoURL = "https://portal.mcpsmd.org/guardian/prefs/assignmentGrade_AssignmentDetail.json";
+        public const String ClassDetailURL = "https://portal.mcpsmd.org/guardian/prefs/assignmentGrade_CourseDetail.json";
         private HttpClient client;
         private String StudentNumber = "";
         private String StudentID = "";
@@ -182,6 +183,13 @@ namespace MyMCPSHelper {
             String url = ClassesBaseURL + "?schoolid=" + cookies.GetCookies(new Uri(LoginURL))["currentSchool"].Value + "&student_number=" + StudentID + "&studentId=" + StudentNumber;
             String jsons = client.GetStringAsync(url).Result;
             return JsonConvert.DeserializeObject<List<Class>>(jsons);
+        }
+
+        public Class loadClassDetail(string secid)
+        {
+            String url = ClassDetailURL + "?secid=" + secid + "&schoolid=" + cookies.GetCookies(new Uri(LoginURL))["currentSchool"].Value + "&student_number=" + StudentID + "&termid=" + loadTerm();
+            String jsons = client.GetStringAsync(url).Result;
+            return JsonConvert.DeserializeObject<Class>(jsons);
         }
 
         public String loadTerm(){
